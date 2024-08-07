@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "UabRFpG4OlpAhgUVpX5n+503KZ/z6Y4EebWjmu8Y9EVvFvNErwowapw8CeIoDbwKb2WN3JaYrLN3zFSVxmwXqw==",
+  "success": true,
+  "projectFilePath": "X:\\mods\\Queuetilla\\Queuetilla.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\john2\\.nuget\\packages\\bepinex.assemblypublicizer.msbuild\\0.4.2\\bepinex.assemblypublicizer.msbuild.0.4.2.nupkg.sha512"
+  ],
+  "logs": []
+}
