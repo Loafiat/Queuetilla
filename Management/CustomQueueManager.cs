@@ -8,12 +8,26 @@ namespace Queuetilla
         public override void OnJoinedRoom()
         {
             Queuetilla.currentQueue = Queuetilla.queues.ElementAt(Queuetilla.currentQueueIndex);
-            Queuetilla.CallQueueJoinEvent(Queuetilla.currentQueue);
+            try
+            {
+                Queuetilla.CallQueueJoinEvent(Queuetilla.currentQueue);
+            }
+            catch
+            {
+                //ignore because photon stoopid
+            }
         }
 
         public override void OnLeftRoom()
         {
-            Queuetilla.CallQueueLeaveEvent(Queuetilla.currentQueue!);
+            try
+            {
+                Queuetilla.CallQueueLeaveEvent(Queuetilla.currentQueue!);
+            }
+            catch
+            {
+                //ignore because photon stoopid
+            }
             Queuetilla.currentQueue = null;
         }
     }

@@ -17,7 +17,18 @@ namespace Queuetilla
             {
                 Queuetilla.queues.Insert(2, "COMPETITIVE");
             }
-            Queuetilla.currentQueueIndex = Queuetilla.queues.IndexOf(__instance.currentQueue);
+
+            //Check if the queue doesn't exist. This can break queue manager, and subsequently photon if it doesn't.
+            if (Queuetilla.queues.IndexOf(__instance.currentQueue) != -1)
+            {
+                Queuetilla.currentQueueIndex = Queuetilla.queues.IndexOf(__instance.currentQueue);
+            }
+            else
+            {
+                Queuetilla.currentQueueIndex = 0;
+                __instance.currentQueue = "DEFAULT";
+                PlayerPrefs.SetString("currentQueue", __instance.currentQueue);
+            }
         }
         
         [HarmonyPrefix]
@@ -25,6 +36,7 @@ namespace Queuetilla
         static bool QueueScreen(GorillaComputer __instance)
         {
             //This adds comp to the queues if allowedInCompetitive is true, and you don't already have comp in queue.
+            //This is so that it shows up immediately when you complete comp course.
             if (__instance.allowedInCompetitive && !Queuetilla.queues.Contains("COMPETITIVE"))
             {
                 Queuetilla.queues.Insert(2, "COMPETITIVE");
@@ -38,7 +50,7 @@ namespace Queuetilla
             __instance.screenText.Text = "THIS OPTION AFFECTS WHO YOU PLAY WITH. PRESS A AND D TO CHANGE QUEUE.\nCUSTOM QUEUES CAN ADD A VARIETY OF DIFFERENT GAMEPLAY OPTIONS, AND EVEN ACT AS CUSTOM GAMEMODES!\n\nCURRENT QUEUE: " + __instance.currentQueue;
             return false;
         }
-        
+
         [HarmonyPrefix]
         [HarmonyPatch("ProcessQueueState")]
         static bool ProcessQueueState(GorillaComputer __instance, GorillaKeyboardBindings buttonPressed)

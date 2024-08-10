@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using BepInEx;
 using HarmonyLib;
@@ -8,7 +7,7 @@ using UnityEngine;
 
 namespace Queuetilla
 {
-    [BepInPlugin("Lofiat.Queuetilla", "Queuetilla", "1.0.0")]
+    [BepInPlugin("Lofiat.Queuetilla", "Queuetilla", "1.0.1")]
     public class Queuetilla : BaseUnityPlugin
     {
         public static event Action<string> OnQueueJoinEvent;
