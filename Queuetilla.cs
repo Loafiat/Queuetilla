@@ -23,7 +23,7 @@ namespace Queuetilla
         public static int currentQueueIndex = 0;
         
         /// <summary>
-        /// The queue of the room you're in.
+        /// The queue of the room you're in. This returns null if you're not in a room.
         /// </summary>
         public static string? CurrentQueue {get => currentQueue;}
         
@@ -31,6 +31,11 @@ namespace Queuetilla
         {
             new Harmony("Lofiat.Queuetilla").PatchAll(Assembly.GetExecutingAssembly());
             GorillaTagger.OnPlayerSpawned(delegate() {new GameObject().AddComponent<CustomQueueManager>();});
+        }
+
+        public static void AddQueue(string queue)
+        {
+            queues.Add(queue);
         }
         
         /// <summary>

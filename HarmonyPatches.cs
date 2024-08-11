@@ -1,6 +1,7 @@
 using System.Linq;
 using GorillaNetworking;
 using HarmonyLib;
+using Photon.Pun;
 using UnityEngine;
 
 namespace Queuetilla
@@ -76,6 +77,14 @@ namespace Queuetilla
                     break;
             }
             return false;
+        }
+
+        //Shouldn't have had to make this patch but network triggers are scuffed.
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(GorillaNetworkJoinTrigger), "OnBoxTriggered")]
+        static bool JoinTriggerPatch(GorillaNetworkJoinTrigger __instance)
+        {
+            return !PhotonNetwork.InRoom || __instance.GetActiveNetworkZone() != __instance.networkZone;
         }
     }
 }
