@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Queuetilla
 {
-    [BepInPlugin("Lofiat.Queuetilla", "Queuetilla", "1.0.1")]
+    [BepInPlugin("Lofiat.Queuetilla", "Queuetilla", "1.0.2")]
     public class Queuetilla : BaseUnityPlugin
     {
         public static event Action<string> OnQueueJoinEvent;
